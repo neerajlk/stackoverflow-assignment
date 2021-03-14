@@ -1,0 +1,185 @@
+<div class="row">
+    <div class="offset-2 col-8 ">
+        <div class="row py-2">
+            <div class="col-1 col-xl-1 col-lg-2 col-md-2 col-sm-3">
+                <div class="row">
+                    <div class="col-12 text-center py-2">
+                        <div>
+                            <fa-icon [icon]="caretUpIcon" size="4x"></fa-icon>
+                        </div>
+                        <div class="font-20 text-muted">{{postDetails?.score}}</div>
+                        <div>
+                            <fa-icon [icon]="caretDownIcon" size="4x"></fa-icon>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center py-2 mx-auto px-2">
+
+                        <div>
+                            <fa-icon [icon]="bookmarkIcon" size="2x"></fa-icon>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center py-2 px-0 mt-2">
+
+                        <div>
+                            <fa-icon [icon]="activityIcon" size="2x"></fa-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 col-xl-11 col-lg-10 col-md-10 col-sm-9 ">
+                <div class="row">
+                    <div class="col-12">
+                        <a class="question">
+                            {{postDetails?.title}}
+                        </a>
+                    </div>
+                    <div class="col-12 border-bottom">
+                        <label class="mx-2">
+                            <span class="text-muted">Asked</span>
+                            5 years, 11 months ago
+                        </label>
+
+                        <label class="mx-2">
+                            <span class="text-muted">Active</span>
+                            11 months ago
+                        </label>
+
+                        <label class="mx-2">
+                            <span class="text-muted">Viewed</span>
+                            8k times
+                        </label>
+                    </div>
+                    <div class="col-12 font-14 mt-3" [innerHTML]="postDetails?.body">
+                    </div>
+                    <div class="col-12 my-2">
+                        <a class="tags mx-1" *ngFor="let tag of postDetails?.tags">{{tag}}</a>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex">
+                            <div class="mr-auto py-2">
+                                <a href="" class="mr-2">Share</a>
+                                <a href="">Follow</a>
+                            </div>
+                            <div class="py-2">
+                                <div class="font-13">asked 41 mins ago</div>
+                                <div class="d-flex flex-row">
+                                    <div>
+                                        <img src="{{postDetails?.owner.profile_image}}" width="40" height="40">
+                                    </div>
+                                    <div class="px-2">
+                                        <a href="{{postDetails?.owner.link}}"
+                                            class="font-13">{{postDetails?.owner.display_name}}</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comments Section-->
+        <div class="row ">
+            <div *ngFor="let comment of comments"
+                class="offset-2 offset-md-2 offset-xl-1 offset-lg-2 offset-sm-3 col-10 col-xl-11 col-lg-10 col-md-10 col-sm-9 border-top py-2">
+                <div [innerHTML]="comment?.body"></div>
+                <a href="{{comment?.owner?.link}}">{{comment?.owner?.display_name}}</a>
+            </div>
+            <div
+                class="offset-2 offset-md-2 offset-xl-1 offset-lg-2 offset-sm-3 col-10 col-xl-11 col-lg-10 col-md-10 col-sm-9 border-top">
+                <a href="">Add a comment</a>
+            </div>
+        </div>
+        <!-- Comments Section Ends-->
+
+        <!-- Answers Section -->
+        <div class="row my-3">
+            <div class="col-12">
+                <div class="d-flex">
+                    <div class="mr-auto p-2">
+                        <h2>{{(postDetails?.answer_count) + " " + (postDetails?.answer_count == 1 ? "Answer" :"Answers") }}
+                        </h2>
+                    </div>
+                    <div class="p-2">
+                        <button class="btn btn-light border">Active</button>
+                        <button class="btn btn-light border">Oldest</button>
+                        <button class="btn btn-light border">Votes</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- answers list -->
+            <div class="col-12 border-top" *ngFor="let answer of answers">
+                <div class="row">
+                    <div class="col-1 col-xl-1 col-lg-2 col-md-2 col-sm-3">
+                        <div class="row">
+                            <div class="col-12 text-center py-2">
+                                <div>
+                                    <fa-icon [icon]="caretUpIcon" size="4x"></fa-icon>
+                                </div>
+                                <div class="font-20 text-muted">{{answer?.score}}</div>
+                                <div>
+                                    <fa-icon [icon]="caretDownIcon" size="4x"></fa-icon>
+                                </div>
+                            </div>
+                            <div class="col-12 text-center py-2 mx-auto px-2" *ngIf="answer.is_accepted">
+                                <div>
+                                    <fa-icon [icon]="checkIcon" size="3x"
+                                        [styles]="{'stroke': 'green', 'color': 'green'}"></fa-icon>
+                                </div>
+                            </div>
+                            <div class="col-12 text-center py-2 px-0 mt-2">
+
+                                <div>
+                                    <fa-icon [icon]="activityIcon" size="1x" rotate="180"></fa-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-10 col-xl-11 col-lg-10 col-md-10 col-sm-9 ">
+                        <div class="row">
+                            <div class="col-12 font-14 mt-3" [innerHTML]="answer?.body">
+
+                            </div>
+
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="d-flex">
+                                            <div class="mr-auto py-2">
+                                                <a href="" class="mr-2">Share</a>
+                                                <a href="">Follow</a>
+                                            </div>
+                                            <div class="py-2">
+                                                <div class="font-13">asked 41 mins ago</div>
+                                                <div class="d-flex flex-row">
+                                                    <div>
+                                                        <img src="{{answer?.owner?.profile_image}}" width="40"
+                                                            height="40">
+                                                    </div>
+                                                    <div class="px-2">
+                                                        <a href="{{answer?.owner?.link}}"
+                                                            class="font-13">{{answer?.owner.display_name}}</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- answers list ends-->
+
+        </div>
+        <!-- Answers Section Ends -->
+
+
+    </div>
+</div>

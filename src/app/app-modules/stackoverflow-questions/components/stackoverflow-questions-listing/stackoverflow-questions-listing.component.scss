@@ -1,0 +1,77 @@
+.tags {
+  color: #39739d;
+  background-color: #e1ecf4;
+  border-color: transparent;
+  display: inline-block;
+  padding: 0.4em 0.5em;
+  margin: 2px 2px 2px 0;
+  font-size: 11px;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+}
+
+.question {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.question-body {
+  line-height: 2.5em;
+  height: 3em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.font-13 {
+  font-size: 13px;
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
+.font-14 {
+  font-size: 14px;
+}
+
+.status-answered {
+  border: 1px solid green;
+  color: green;
+}
+
+.status-verified-answer {
+  border: 1px solid green;
+  color: white !important;
+  background-color: green;
+}
+
+.paginator {
+  background-color: transparent;
+  border-radius: 3px;
+  border: 1px solid #d6d9dc;
+  font-size: 13px;
+  line-height: 1.92307692;
+  color: #3c4146;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.bg-orange {
+  background-color: orange;
+}
+
+.btn-orange {
+  background-color: orange;
+  color: white;
+}
+
+.custom-pagination ::ng-deep .ngx-pagination .current {
+  background: orange;
+}

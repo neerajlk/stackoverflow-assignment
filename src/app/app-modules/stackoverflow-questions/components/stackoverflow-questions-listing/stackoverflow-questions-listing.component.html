@@ -1,0 +1,147 @@
+<div class="row">
+    <div class="offset-2 col-8 ">
+        <!-- Filter start -->
+        <div class="row">
+            <div class="col-9 px-0">
+                <input class="form-control" type="text" placeholder="Search Question" [formControl]="searchString">
+            </div>
+            <div class="col-2">
+                <button class="btn btn-light w-100" (click)="applyFilter(searchString.value,'search')">Search</button>
+            </div>
+            <div class="col-1">
+                <button class="btn btn-light w-100" type="button" data-toggle="collapse" data-target="#collapseExample"
+                    aria-expanded="false" aria-controls="collapseExample">F</button>
+            </div>
+        </div>
+        <div class="row collapse my-2 bg-light" id="collapseExample">
+            <div class="col-4 my-3">
+                <strong>Order by</strong>
+                <div class="row">
+                    <div class="col-12" *ngFor="let order of orderList">
+                        <input type="radio" name="order" value="{{order.param}}" id="{{order.param}}"
+                            (change)="applyFilter($event.target.value,'order')">
+                        <label class="mx-1"> {{order.name}}</label>
+                    </div>
+                </div>
+
+                <strong>Accepted Answer</strong>
+                <div class="row" *ngFor="let param of Accepted">
+                    <div class="col-12">
+                        <input type="radio" name="answer" value="{{param}}" id="{{param}}"
+                            (change)="applyFilter($event.target.value,'answer')">
+                        <label class="mx-1"> {{param}}</label>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-4 my-3">
+                <strong>Sorted by</strong>
+                <div class="row" *ngFor="let sortParam of sortingList">
+                    <div class="col-12">
+                        <input type="radio" name="sorted" value="{{sortParam}}" id="{{sortParam}}"
+                            (change)="applyFilter($event.target.value,'sort')">
+                        <label class="mx-1"> {{sortParam}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 my-3">
+                <strong>Date</strong>
+                <div class="row">
+                    <div class="col-12">
+                        <label class="mx-1">From Date</label>
+                        <input type="date" id="birthday" name="birthday">
+                    </div>
+                    <div class="col-12">
+                        <label class="mx-1">To Date</label>
+                        <input type="date" id="birthday" name="birthday">
+                    </div>
+                </div>
+
+                <strong>Closed</strong>
+                <div class="row" *ngFor="let param of Closed">
+                    <div class="col-12">
+                        <input type="radio" name="ordered" value="{{param}}" id="{{param}}"
+                            (change)="applyFilter($event.target.value,'closed')">
+                        <label class="mx-1"> {{param}}</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Filter end -->
+
+        <div class="row py-2 border-bottom" *ngFor="let question of questionsList| paginate
+            : {itemsPerPage: pageSize, currentPage: previousPage,totalItems: total}; let i = index">
+            <div class="col-1 col-xl-1 col-lg-2 col-md-2 col-sm-3">
+                <div class="row">
+                    <div class="col-12 text-center py-2">
+                        <div class="font-20 text-muted">0</div>
+                        <div class="font-13 text-capitalize">votes</div>
+                    </div>
+                    <div class="col-12 text-center py-2 mx-auto px-2"
+                        [ngClass]="{'status-answered':question?.is_answered ,'status-verified-answer':(question?.is_answered && question?.accepted_answer_id)}">
+                        <div class="font-20"
+                            [ngClass]="{'text-muted':!(question?.is_answered && question?.accepted_answer_id)}">
+                            {{question?.answer_count}}</div>
+                        <div class="font-13 text-capitalize">answer</div>
+                    </div>
+                    <div class="col-12 text-center py-2 px-0">
+                        <p class="font-13">{{question?.view_count}} Views</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 col-xl-11 col-lg-10 col-md-10 col-sm-9">
+                <div class="row">
+                    <div class="col-12">
+                        <a class="question "
+                            href="/stackoverflow/questions/{{question?.question_id}}">{{question?.title}}</a>
+                    </div>
+                    <div class="col-12 font-14 question-body">
+                        {{question?.body_markdown}}
+                    </div>
+                    <div class="col-12">
+                        <a *ngFor="let tag of question?.tags" class="tags">{{tag}}</a>
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="offset-9 col-3 font-13">asked 41 mins ago</div>
+                            <div class="offset-9 col-3">
+                                <div class="d-flex flex-row">
+                                    <div>
+                                        <img src="{{question?.owner?.profile_image}}" width="40" height="40">
+                                    </div>
+                                    <div class="px-2">
+                                        <a href="{{question?.owner?.link}}"
+                                            class="font-13">{{question?.owner?.display_name}}</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- paginator -->
+        <div class="row my-4">
+            <div class="col text-left">
+                <!-- <a class="paginator mx-1 p-1">1</a>
+                <a class="paginator mx-1 p-1">2</a>
+                <a class="paginator mx-1 p-1">3</a>
+                <a class="paginator mx-1 p-1">...</a>
+                <a class="paginator mx-1 p-1">Next</a> -->
+                <pagination-controls *ngIf="questionsList?.length != 0"  class="custom-pagination"
+                    (pageChange)="previousPage = getDataByPage($event)"></pagination-controls>
+            </div>
+            <div class="col text-right">
+                <a class="paginator mx-1 p-1" [ngClass]="{'bg-orange':pageSize == size}"
+                    (click)="applyFilter(size,'pagesize')" *ngFor="let size of pageSizes">{{size}}</a>
+
+                <span class="mx-2">Per Page</span>
+            </div>
+        </div>
+        <!-- paginator end -->
+    </div>
+</div>
