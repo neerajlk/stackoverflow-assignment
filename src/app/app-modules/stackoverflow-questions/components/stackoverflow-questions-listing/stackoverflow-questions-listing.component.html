@@ -11,7 +11,7 @@
             <div class="col-1">
                 <button class="btn btn-light w-100" type="button" data-toggle="collapse" data-target="#collapseExample"
                     aria-expanded="false" aria-controls="collapseExample">
-                    <fa-icon [icon]="cogIcon" size="lg"></fa-icon>
+                    <fa-icon [icon]="cogIcon" class="icon-hover" size="lg"></fa-icon>
             
                 </button>
             </div>
@@ -44,7 +44,7 @@
                     <div class="col-12">
                         <input type="radio" name="sorted" value="{{sortParam}}" id="{{sortParam}}"
                             (change)="applyFilter($event.target.value,'sort')">
-                        <label class="mx-1"> {{sortParam}}</label>
+                        <label class="mx-1 text-capitalize"> {{sortParam}}</label>
                     </div>
                 </div>
             </div>
@@ -52,12 +52,12 @@
                 <strong>Date</strong>
                 <div class="row">
                     <div class="col-12">
-                        <label class="mx-1">From Date</label>
+                        <label class="mx-1">From :</label>
                         <input type="date" id="fromDate" name="fromDate" [formControl]="fromDate"
                             [max]="(toDate.value || today)" (change)="applyFilter(fromDate.value,'fromdate')">
                     </div>
                     <div class="col-12">
-                        <label class="mx-1">To Date</label>
+                        <label class="mx-1">To :</label>
                         <input type="date" id="toDate" name="toDate" [formControl]="toDate" [min]="fromDate.value"
                             [max]="today" (change)="applyFilter(toDate.value,'todate')">
                     </div>
@@ -114,7 +114,7 @@
                             <div class="offset-9 col-3">
                                 <div class="d-flex flex-row">
                                     <div>
-                                        <img src="{{question?.owner?.profile_image}}" width="40" height="40">
+                                        <img src="{{question?.owner?.profile_image}}" width="50" height="50">
                                     </div>
                                     <div class="px-2">
                                         <a href="{{question?.owner?.link}}" target="_blank"

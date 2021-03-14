@@ -57,8 +57,8 @@
                     <div class="col-12">
                         <div class="d-flex">
                             <div class="mr-auto py-2">
-                                <a href="" class="mr-2">Share</a>
-                                <a href="">Follow</a>
+                                <a href="javascript:void(0)" class="mr-2">Share</a>
+                                <a href="javascript:void(0)">Follow</a>
                             </div>
                             <div class="py-2">
                                 <div class="font-13">asked {{utility.epochToDate(postDetails?.creation_date)| date}}</div>
@@ -70,7 +70,8 @@
                                         <a href="{{postDetails?.owner.link}}" target="_blank"
                                             class="font-13">{{postDetails?.owner.display_name}}</a>
                                         <div>
-                                            <span class="reputation-score">{{postDetails?.owner?.reputation}}</span>
+                                           
+                                           <span class="reputation-score">{{postDetails?.owner?.reputation}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -85,12 +86,14 @@
         <div class="row ">
             <div *ngFor="let comment of comments"
                 class="offset-2 offset-md-2 offset-xl-1 offset-lg-2 offset-sm-3 col-10 col-xl-11 col-lg-10 col-md-10 col-sm-9 border-top py-2">
-                <div [innerHTML]="comment?.body"></div>
-                <a href="{{comment?.owner?.link}}" target="_blank">{{comment?.owner?.display_name}}</a>
+                <span [innerHTML]="comment?.body"></span>
+                <span>
+                    -  <a href="{{comment?.owner?.link}}" target="_blank">{{comment?.owner?.display_name}}</a>
+                </span>
             </div>
             <div
                 class="offset-2 offset-md-2 offset-xl-1 offset-lg-2 offset-sm-3 col-10 col-xl-11 col-lg-10 col-md-10 col-sm-9 border-top">
-                <a href="">Add a comment</a>
+                <a href="javascript:void(0)">Add a comment</a>
             </div>
         </div>
         <!-- Comments Section Ends-->
@@ -151,15 +154,15 @@
                                     <div class="col-12">
                                         <div class="d-flex">
                                             <div class="mr-auto py-2">
-                                                <a href="" class="mr-2">Share</a>
-                                                <a href="">Follow</a>
+                                                <a href="javascript:void(0)" class="mr-2">Share</a>
+                                                <a href="javascript:void(0)">Follow</a>
                                             </div>
                                             <div class="py-2">
                                                 <div class="font-13">Answered On {{utility.epochToDate(answer?.creation_date)| date}}</div>
                                                 <div class="d-flex flex-row">
                                                     <div>
-                                                        <img src="{{answer?.owner?.profile_image}}" width="40"
-                                                            height="40">
+                                                        <img src="{{answer?.owner?.profile_image}}" width="50"
+                                                            height="50">
                                                     </div>
                                                     <div class="px-2">
                                                         <a href="{{answer?.owner?.link}}" target="_blank"
