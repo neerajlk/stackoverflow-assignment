@@ -4,7 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Setup
 
-Clone the repo and switch to `master` branch and install node modules by running command `npm install` from project directory.
+Clone the repo and switch to `main` branch and install node modules by running command `npm install` from project directory.
+Works with Angular version 10 , node version 12 , npm version 6.9.0 .
 
 ## Development server
 
