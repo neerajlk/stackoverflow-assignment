@@ -3,17 +3,17 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BaseService } from './http/base.service';
+import { UtilityService } from './services/utilities.service'
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, LogoutButtonComponent],
+  declarations: [HeaderComponent, FooterComponent],
   imports: [
     CommonModule,
     HttpClientModule
   ],
-  exports:[HeaderComponent,FooterComponent,LogoutButtonComponent],
-  providers: [BaseService],
+  exports: [HeaderComponent, FooterComponent],
+  providers: [BaseService, UtilityService],
 })
 export class CoreModule { }

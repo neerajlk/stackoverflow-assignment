@@ -5,23 +5,23 @@
                 <div class="row">
                     <div class="col-12 text-center py-2">
                         <div>
-                            <fa-icon [icon]="caretUpIcon" size="4x"></fa-icon>
+                            <fa-icon [icon]="caretUpIcon" class="icon-hover" size="4x"></fa-icon>
                         </div>
                         <div class="font-20 text-muted">{{postDetails?.score}}</div>
                         <div>
-                            <fa-icon [icon]="caretDownIcon" size="4x"></fa-icon>
+                            <fa-icon [icon]="caretDownIcon" class="icon-hover" size="4x"></fa-icon>
                         </div>
                     </div>
                     <div class="col-12 text-center py-2 mx-auto px-2">
 
                         <div>
-                            <fa-icon [icon]="bookmarkIcon" size="2x"></fa-icon>
+                            <fa-icon [icon]="bookmarkIcon" size="2x" class="icon-hover"></fa-icon>
                         </div>
                     </div>
                     <div class="col-12 text-center py-2 px-0 mt-2">
 
                         <div>
-                            <fa-icon [icon]="activityIcon" size="2x"></fa-icon>
+                            <fa-icon [icon]="activityIcon" size="2x" class="icon-hover"></fa-icon>
                         </div>
                     </div>
                 </div>
@@ -36,17 +36,17 @@
                     <div class="col-12 border-bottom">
                         <label class="mx-2">
                             <span class="text-muted">Asked</span>
-                            5 years, 11 months ago
+                            {{utility.epochToDate(postDetails?.creation_date) | date}}
                         </label>
 
                         <label class="mx-2">
                             <span class="text-muted">Active</span>
-                            11 months ago
+                            {{utility.epochToDate(postDetails?.last_activity_date) | date}}
                         </label>
 
                         <label class="mx-2">
                             <span class="text-muted">Viewed</span>
-                            8k times
+                            {{postDetails?.view_count}} times
                         </label>
                     </div>
                     <div class="col-12 font-14 mt-3" [innerHTML]="postDetails?.body">
@@ -61,15 +61,17 @@
                                 <a href="">Follow</a>
                             </div>
                             <div class="py-2">
-                                <div class="font-13">asked 41 mins ago</div>
+                                <div class="font-13">asked {{utility.epochToDate(postDetails?.creation_date)| date}}</div>
                                 <div class="d-flex flex-row">
                                     <div>
                                         <img src="{{postDetails?.owner.profile_image}}" width="40" height="40">
                                     </div>
                                     <div class="px-2">
-                                        <a href="{{postDetails?.owner.link}}"
+                                        <a href="{{postDetails?.owner.link}}" target="_blank"
                                             class="font-13">{{postDetails?.owner.display_name}}</a>
-
+                                        <div>
+                                            <span class="reputation-score">{{postDetails?.owner?.reputation}}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +86,7 @@
             <div *ngFor="let comment of comments"
                 class="offset-2 offset-md-2 offset-xl-1 offset-lg-2 offset-sm-3 col-10 col-xl-11 col-lg-10 col-md-10 col-sm-9 border-top py-2">
                 <div [innerHTML]="comment?.body"></div>
-                <a href="{{comment?.owner?.link}}">{{comment?.owner?.display_name}}</a>
+                <a href="{{comment?.owner?.link}}" target="_blank">{{comment?.owner?.display_name}}</a>
             </div>
             <div
                 class="offset-2 offset-md-2 offset-xl-1 offset-lg-2 offset-sm-3 col-10 col-xl-11 col-lg-10 col-md-10 col-sm-9 border-top">
@@ -116,23 +118,23 @@
                         <div class="row">
                             <div class="col-12 text-center py-2">
                                 <div>
-                                    <fa-icon [icon]="caretUpIcon" size="4x"></fa-icon>
+                                    <fa-icon [icon]="caretUpIcon" size="4x" class="icon-hover"></fa-icon>
                                 </div>
                                 <div class="font-20 text-muted">{{answer?.score}}</div>
                                 <div>
-                                    <fa-icon [icon]="caretDownIcon" size="4x"></fa-icon>
+                                    <fa-icon [icon]="caretDownIcon" size="4x" class="icon-hover"></fa-icon>
                                 </div>
                             </div>
                             <div class="col-12 text-center py-2 mx-auto px-2" *ngIf="answer.is_accepted">
                                 <div>
-                                    <fa-icon [icon]="checkIcon" size="3x"
+                                    <fa-icon [icon]="checkIcon" size="3x" 
                                         [styles]="{'stroke': 'green', 'color': 'green'}"></fa-icon>
                                 </div>
                             </div>
                             <div class="col-12 text-center py-2 px-0 mt-2">
 
                                 <div>
-                                    <fa-icon [icon]="activityIcon" size="1x" rotate="180"></fa-icon>
+                                    <fa-icon [icon]="activityIcon" class="icon-hover" size="1x" rotate="180"></fa-icon>
                                 </div>
                             </div>
                         </div>
@@ -153,16 +155,18 @@
                                                 <a href="">Follow</a>
                                             </div>
                                             <div class="py-2">
-                                                <div class="font-13">asked 41 mins ago</div>
+                                                <div class="font-13">Answered On {{utility.epochToDate(answer?.creation_date)| date}}</div>
                                                 <div class="d-flex flex-row">
                                                     <div>
                                                         <img src="{{answer?.owner?.profile_image}}" width="40"
                                                             height="40">
                                                     </div>
                                                     <div class="px-2">
-                                                        <a href="{{answer?.owner?.link}}"
+                                                        <a href="{{answer?.owner?.link}}" target="_blank"
                                                             class="font-13">{{answer?.owner.display_name}}</a>
-
+                                                            <div>
+                                                                <span class="reputation-score">{{answer?.owner?.reputation}}</span>
+                                                            </div>
                                                     </div>
                                                 </div>
                                             </div>

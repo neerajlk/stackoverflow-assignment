@@ -65,6 +65,7 @@
 
 .bg-orange {
   background-color: orange;
+  color: white;
 }
 
 .btn-orange {
@@ -74,4 +75,10 @@
 
 .custom-pagination ::ng-deep .ngx-pagination .current {
   background: orange;
+}
+
+.reputation-score {
+  font-weight: bold;
+  font-size: 12px;
+  margin-right: 2px;
 }

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { faCaretUp, faCaretDown, faBookmark, faRedo, faCheck } from '@fortawesome/free-solid-svg-icons';
 
-
+import { UtilityService } from '../../../../core/services/utilities.service'
 
 @Component({
   selector: 'app-stackoverflow-question-detail',
@@ -27,7 +27,8 @@ export class StackoverflowQuestionDetailComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private stakoverflowService: StackoverflowService
+    private stakoverflowService: StackoverflowService,
+    public utility: UtilityService
   ) {
     this.route.params.subscribe((res) => {
       if (res.id) {
@@ -37,7 +38,6 @@ export class StackoverflowQuestionDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
 
     this.getPostDetails(this.questionId)
     this.getPostComments(this.questionId)

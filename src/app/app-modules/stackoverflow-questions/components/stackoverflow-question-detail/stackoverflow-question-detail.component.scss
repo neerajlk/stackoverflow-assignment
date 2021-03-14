@@ -60,3 +60,12 @@
 img {
   max-width: 1000px !important;
 }
+
+.icon-hover {
+  color: grey;
+}
+.icon-hover:hover {
+  color: orange !important;
+  cursor: pointer;
+
+}
